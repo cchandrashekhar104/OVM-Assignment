@@ -45,12 +45,12 @@ vtable is just oop->_vt[-1]
 
 struct object  {
 	_VTABLE_REF;
-	int size;
+	int obj_size;
 };
 
 struct vtable {
 	_VTABLE_REF;
-	int a;
+	int obj_size;
 	char		*name;
 	int             size;		// these members are accessed only by VM
 	int             tally;
@@ -61,12 +61,13 @@ struct vtable {
 
 struct symbol {
 	_VTABLE_REF;
-	int size;
+	int obj_size;
 	char     *string;
 };
 
 struct closure {
 	_VTABLE_REF;
+	int obj_size;
 	method_t method;
 	struct object *env;	// symbol bindings
 };
@@ -180,7 +181,7 @@ struct object *vt_allocate(struct closure *cls, struct vtable *self, size_t byte
 	vtp = (struct vtable **)calloc(1, sizeof(struct vtable *) + bytes);
 	oop = (struct object *)(vtp+1);
 	oop_setvt(oop, self);
-	oop->size=bytes;
+	oop->obj_size=bytes;
 	return oop;
 }
 
@@ -322,9 +323,9 @@ static struct object *symbol_length(struct closure *cls, struct object *self)
 // Object>>#sizeInMemory
 static struct object *object_sizeInMemory(struct closure *cls, struct object *self)
 {
-	int len=self->size;
+	int len=self->obj_size;
 	if(len==0)
-		len=self->size+sizeof(struct object);
+		len=self->obj_size+sizeof(struct object);
 	return i2oop(len);
 }
 

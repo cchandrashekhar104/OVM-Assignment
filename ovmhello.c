@@ -1,7 +1,7 @@
 #include "ovm.c"
 #include "string.h"
 // Begin String definitions
-struct mystring { _VTABLE_REF;int size; int length; char *chars; }; 
+struct mystring { _VTABLE_REF;int obj_size; int length; char *chars; }; 
 typedef struct mystring *HString;
 
 static struct vtable *String_vt;
@@ -14,7 +14,7 @@ static struct object *String_newp(struct closure *cls, struct object *self, char
 	
 	clone->length = strlen(chars);
 	clone->chars  = strdup(chars);
-	((struct object *)clone)->size= ((struct object *)clone)->size+clone->length;
+	((struct object *)clone)->obj_size= ((struct object *)clone)->obj_size+clone->length;
 	return (struct object *)clone;
 }
 
@@ -38,7 +38,6 @@ static struct object *String_append(struct closure * cls, struct object * self, 
 	char *res=malloc((str1->length+str2->length+1)*sizeof(char));
 	strcpy(res,str1->chars);
 	strcat(res,str2->chars);
-	printf("%s\n",res);
 	struct object *clone=send(String,s_newp,res);
 	free(res);
 	return (struct object *)clone;
@@ -46,7 +45,7 @@ static struct object *String_append(struct closure * cls, struct object * self, 
 static struct symbol *s_append;
 
 // ------------------------ Begin Array definitions
-struct array { _VTABLE_REF;int size; int length; struct object **contents; };
+struct array { _VTABLE_REF;int obj_size; int length; struct object **contents; };
 typedef struct array *HArray;
 
 static struct vtable *Array_vt;
@@ -60,7 +59,7 @@ static struct object *Array_newp(struct closure *cls, struct object *self, int l
 	clone->length   = length;
 	clone->contents = (struct object **)calloc(clone->length, sizeof(struct object *));
 	assert(clone->contents);
-	((struct object *)clone)->size= ((struct object *)clone)->size+((clone->length)*sizeof(*(clone->contents)));
+	((struct object *)clone)->obj_size= ((struct object *)clone)->obj_size+((clone->length)*sizeof(*(clone->contents)));
 	return (struct object *)clone;
 }
 
@@ -143,28 +142,46 @@ int main(int argc, char *argv[])
 	for (i = 1; i <= 4; i++)
 		send(send(line, s_at, i), s_print);
 	printf("\n");
-	struct object *str3=send(String, s_append, h, w);
-	send(str3, s_print);
-	int len=oop2i(send(Proto, s_sizeInMemory));
-	printf("Size of Proto %d\n",len);
 	
-	len=oop2i(send(Closure_vt, s_sizeInMemory));
-	printf("Size of struct Closure_vt %d\n",len);
-	int len1=oop2i(send(h,s_length));
-	int len2=oop2i(send(w,s_length));
-	int len3=oop2i(send(str3,s_length));
-	//printf("Length of h=%d, Length of w=%d ,Length after append=%d\n",len1,len2,len3);
-	if(len1+len2==len3)
+	printf("--Testing Append--\n");
+
+	struct object *str3= send(String, s_append, h, sp); 		//appending hello and space
+	struct object *str4= send(String, s_append, w, nl); 		//appending world and new line
+	struct object *str5= send(String, s_append, str3, str4); 	//appending the two objects created above
+	struct object *str6= send(String, s_append, h, w); 		//appending hello and world
+	
+	send(str5, s_print); 						//printing hello world\n
+
+	int len1=oop2i(send(h,s_length)); 	//getting length of hello
+	int len2=oop2i(send(w,s_length)); 	//getting length of world
+	int len3=oop2i(send(str6,s_length)); 	//getting length of helloworld
+	
+	if(len1+len2==len3) 			//Testing for (h length + w length) = (h append: w) length.
 	printf("(h length + w length) = (h append: w) length. True\n");
 	else
 	printf("(h length + w length) = (h append: w) length. False\n");
+
+	printf("\n--Testing SizeInMemory--\n");
+
 	int size1=oop2i(send(h, s_sizeInMemory));
 	int size2=oop2i(send(w, s_sizeInMemory));
-	int size3=oop2i(send(str3, s_sizeInMemory));
+	int size3=oop2i(send(str6, s_sizeInMemory));
+
 	printf("Size of h=%d, Size of w=%d ,Size after append=%d\n",size1,size2,size3);
-	if(size1+size2==size3)
+
+	if(size1+size2==size3)			//Testing for (h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory.
 	printf("(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. True\n");
 	else
 	printf("(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False\n");
+
+	/***Rewriting the above test case to make it true**/
+
+	struct object *str7= send(String, s_newp, "");
+	int size4=oop2i(send(str7, s_sizeInMemory));
+	if(size1+size2==size3+size4)
+	printf("(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory + \"\" sizeInMemory. True\n");
+	else
+	printf("(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory + \"\" sizeInMemory. False\n");
+
 	return 0;
 }
