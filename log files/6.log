@@ -1,1 +1,684 @@
+Script started on Wed 29 Mar 2017 07:55:52 AM UTC
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ echo chandrashek[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kgcc -d [K[Kf[Kg -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello 
+vt Proto_vt 0x16cb0b8 parent 0x16cb158 (Object_vt) size 4 tally 4
+    0 key 0x16cb338 (#lookup) value 0x16cb618
+    1 key 0x16cb388 (#add_method) value 0x16cb638
+    2 key 0x16cb3d8 (#allocate) value 0x16cb138
+    3 key 0x16cb468 (#delegate) value 0x16cb118
+obj Proto 0x16cb6b8 vt Proto_vt 0x16cb0b8
+vt Object_vt 0x16cb158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x16cb5c8 (#sizeInMemory) value 0x16cb718
+obj Object 0x16cb6d8 vt Object_vt 0x16cb158
+vt Symbol_vt 0x16cb1f8 parent 0x16cb158 (Object_vt) size 4 tally 3
+    0 key 0x16cb498 (#new:) value 0x16cb738
+    1 key 0x16cb438 (#print) value 0x16cb758
+    2 key 0x16cb408 (#length) value 0x16cb278
+obj Symbol 0x16cb6f8 vt Symbol_vt 0x16cb1f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
 
+helloworld
+Size of Proto 8
+Size of struct Closure_vt 48
+(h length + w length) = (h append: w) length. True
+Size of h=21, Size of w=21 ,Size after append=26
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c[18P./ovmhello gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello 
+vt Proto_vt 0xba80b8 parent 0xba8158 (Object_vt) size 4 tally 4
+    0 key 0xba8338 (#lookup) value 0xba8618
+    1 key 0xba8388 (#add_method) value 0xba8638
+    2 key 0xba83d8 (#allocate) value 0xba8138
+    3 key 0xba8468 (#delegate) value 0xba8118
+obj Proto 0xba86b8 vt Proto_vt 0xba80b8
+vt Object_vt 0xba8158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0xba85c8 (#sizeInMemory) value 0xba8718
+obj Object 0xba86d8 vt Object_vt 0xba8158
+vt Symbol_vt 0xba81f8 parent 0xba8158 (Object_vt) size 4 tally 3
+    0 key 0xba8498 (#new:) value 0xba8738
+    1 key 0xba8438 (#print) value 0xba8758
+    2 key 0xba8408 (#length) value 0xba8278
+obj Symbol 0xba86f8 vt Symbol_vt 0xba81f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+--Testing Append--
+hello world
+(h length + w length) = (h append: w) length. True
+Size of h=21, Size of w=21 ,Size after append=26
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c[18P./ovmhello 
+vt Proto_vt 0x8fe0b8 parent 0x8fe158 (Object_vt) size 4 tally 4
+    0 key 0x8fe338 (#lookup) value 0x8fe618
+    1 key 0x8fe388 (#add_method) value 0x8fe638
+    2 key 0x8fe3d8 (#allocate) value 0x8fe138
+    3 key 0x8fe468 (#delegate) value 0x8fe118
+obj Proto 0x8fe6b8 vt Proto_vt 0x8fe0b8
+vt Object_vt 0x8fe158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x8fe5c8 (#sizeInMemory) value 0x8fe718
+obj Object 0x8fe6d8 vt Object_vt 0x8fe158
+vt Symbol_vt 0x8fe1f8 parent 0x8fe158 (Object_vt) size 4 tally 3
+    0 key 0x8fe498 (#new:) value 0x8fe738
+    1 key 0x8fe438 (#print) value 0x8fe758
+    2 key 0x8fe408 (#length) value 0x8fe278
+obj Symbol 0x8fe6f8 vt Symbol_vt 0x8fe1f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+--Testing Append--
+hello world
+(h length + w length) = (h append: w) length. True
+--Testing SizeInMemory--
+Size of h=21, Size of w=21 ,Size after append=26
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c[18P./ovmhello 
+vt Proto_vt 0x14120b8 parent 0x1412158 (Object_vt) size 4 tally 4
+    0 key 0x1412338 (#lookup) value 0x1412618
+    1 key 0x1412388 (#add_method) value 0x1412638
+    2 key 0x14123d8 (#allocate) value 0x1412138
+    3 key 0x1412468 (#delegate) value 0x1412118
+obj Proto 0x14126b8 vt Proto_vt 0x14120b8
+vt Object_vt 0x1412158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x14125c8 (#sizeInMemory) value 0x1412718
+obj Object 0x14126d8 vt Object_vt 0x1412158
+vt Symbol_vt 0x14121f8 parent 0x1412158 (Object_vt) size 4 tally 3
+    0 key 0x1412498 (#new:) value 0x1412738
+    1 key 0x1412438 (#print) value 0x1412758
+    2 key 0x1412408 (#length) value 0x1412278
+obj Symbol 0x14126f8 vt Symbol_vt 0x14121f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+--Testing Append--
+hello world
+(h length + w length) = (h append: w) length. True
+
+--Testing SizeInMemory--
+Size of h=21, Size of w=21 ,Size after append=26
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c[18P./ovmhello 
+vt Proto_vt 0x23050b8 parent 0x2305158 (Object_vt) size 4 tally 4
+    0 key 0x2305338 (#lookup) value 0x2305618
+    1 key 0x2305388 (#add_method) value 0x2305638
+    2 key 0x23053d8 (#allocate) value 0x2305138
+    3 key 0x2305468 (#delegate) value 0x2305118
+obj Proto 0x23056b8 vt Proto_vt 0x23050b8
+vt Object_vt 0x2305158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x23055c8 (#sizeInMemory) value 0x2305718
+obj Object 0x23056d8 vt Object_vt 0x2305158
+vt Symbol_vt 0x23051f8 parent 0x2305158 (Object_vt) size 4 tally 3
+    0 key 0x2305498 (#new:) value 0x2305738
+    1 key 0x2305438 (#print) value 0x2305758
+    2 key 0x2305408 (#length) value 0x2305278
+obj Symbol 0x23056f8 vt Symbol_vt 0x23051f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+--Testing Append--
+hello world
+(h length + w length) = (h append: w) length. True
+
+--Testing SizeInMemory--
+Size of h=21, Size of w=21 ,Size after append=26
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False
+Segmentation fault (core dumped)
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c[18P./ovmhello 
+vt Proto_vt 0x19ea0b8 parent 0x19ea158 (Object_vt) size 4 tally 4
+    0 key 0x19ea338 (#lookup) value 0x19ea618
+    1 key 0x19ea388 (#add_method) value 0x19ea638
+    2 key 0x19ea3d8 (#allocate) value 0x19ea138
+    3 key 0x19ea468 (#delegate) value 0x19ea118
+obj Proto 0x19ea6b8 vt Proto_vt 0x19ea0b8
+vt Object_vt 0x19ea158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x19ea5c8 (#sizeInMemory) value 0x19ea718
+obj Object 0x19ea6d8 vt Object_vt 0x19ea158
+vt Symbol_vt 0x19ea1f8 parent 0x19ea158 (Object_vt) size 4 tally 3
+    0 key 0x19ea498 (#new:) value 0x19ea738
+    1 key 0x19ea438 (#print) value 0x19ea758
+    2 key 0x19ea408 (#length) value 0x19ea278
+obj Symbol 0x19ea6f8 vt Symbol_vt 0x19ea1f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+--Testing Append--
+hello world
+(h length + w length) = (h append: w) length. True
+
+--Testing SizeInMemory--
+Size of h=21, Size of w=21 ,Size after append=26
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False
+Size of null =16
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c[18P./ovmhello 
+vt Proto_vt 0x14820b8 parent 0x1482158 (Object_vt) size 4 tally 4
+    0 key 0x1482338 (#lookup) value 0x14826d8
+    1 key 0x1482398 (#add_method) value 0x1482708
+    2 key 0x14823f8 (#allocate) value 0x1482798
+    3 key 0x14824b8 (#delegate) value 0x14827c8
+obj Proto 0x1482138 vt Proto_vt 0x14820b8
+vt Object_vt 0x1482158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x1482678 (#sizeInMemory) value 0x14827f8
+obj Object 0x1482118 vt Object_vt 0x1482158
+vt Symbol_vt 0x14821f8 parent 0x1482158 (Object_vt) size 4 tally 3
+    0 key 0x1482518 (#new:) value 0x1482828
+    1 key 0x1482428 (#print) value 0x1482858
+    2 key 0x1482618 (#length) value 0x14828e8
+obj Symbol 0x1482098 vt Symbol_vt 0x14821f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+--Testing Append--
+hello world
+(h length + w length) = (h append: w) length. True
+
+--Testing SizeInMemory--
+Size of h=21, Size of w=21 ,Size after append=26
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False
+Size of null =16
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ 
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c[18P./ovmhello 
+vt Proto_vt 0x13060b8 parent 0x1306158 (Object_vt) size 4 tally 4
+    0 key 0x1306338 (#lookup) value 0x13066d8
+    1 key 0x1306398 (#add_method) value 0x1306708
+    2 key 0x13063f8 (#allocate) value 0x1306798
+    3 key 0x13064b8 (#delegate) value 0x13067c8
+obj Proto 0x1306138 vt Proto_vt 0x13060b8
+vt Object_vt 0x1306158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x1306678 (#sizeInMemory) value 0x13067f8
+obj Object 0x1306118 vt Object_vt 0x1306158
+vt Symbol_vt 0x13061f8 parent 0x1306158 (Object_vt) size 4 tally 3
+    0 key 0x1306518 (#new:) value 0x1306828
+    1 key 0x1306428 (#print) value 0x1306858
+    2 key 0x1306618 (#length) value 0x13068e8
+obj Symbol 0x1306098 vt Symbol_vt 0x13061f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+--Testing Append--
+hello world
+(h length + w length) = (h append: w) length. True
+
+--Testing SizeInMemory--
+Size of h=21, Size of w=21 ,Size after append=26
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory +  sizeInMemory. True
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c[18P./ovmhello 
+vt Proto_vt 0x19570b8 parent 0x1957158 (Object_vt) size 4 tally 4
+    0 key 0x1957338 (#lookup) value 0x19576d8
+    1 key 0x1957398 (#add_method) value 0x1957708
+    2 key 0x19573f8 (#allocate) value 0x1957798
+    3 key 0x19574b8 (#delegate) value 0x19577c8
+obj Proto 0x1957138 vt Proto_vt 0x19570b8
+vt Object_vt 0x1957158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x1957678 (#sizeInMemory) value 0x19577f8
+obj Object 0x1957118 vt Object_vt 0x1957158
+vt Symbol_vt 0x19571f8 parent 0x1957158 (Object_vt) size 4 tally 3
+    0 key 0x1957518 (#new:) value 0x1957828
+    1 key 0x1957428 (#print) value 0x1957858
+    2 key 0x1957618 (#length) value 0x19578e8
+obj Symbol 0x1957098 vt Symbol_vt 0x19571f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+--Testing Append--
+hello world
+(h length + w length) = (h append: w) length. True
+
+--Testing SizeInMemory--
+Size of h=21, Size of w=21 ,Size after append=26
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory +  sizeInMemory. True
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c[18P./ovmhello 
+vt Proto_vt 0x10050b8 parent 0x1005158 (Object_vt) size 4 tally 4
+    0 key 0x1005338 (#lookup) value 0x10056d8
+    1 key 0x1005398 (#add_method) value 0x1005708
+    2 key 0x10053f8 (#allocate) value 0x1005798
+    3 key 0x10054b8 (#delegate) value 0x10057c8
+obj Proto 0x1005138 vt Proto_vt 0x10050b8
+vt Object_vt 0x1005158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x1005678 (#sizeInMemory) value 0x10057f8
+obj Object 0x1005118 vt Object_vt 0x1005158
+vt Symbol_vt 0x10051f8 parent 0x1005158 (Object_vt) size 4 tally 3
+    0 key 0x1005518 (#new:) value 0x1005828
+    1 key 0x1005428 (#print) value 0x1005858
+    2 key 0x1005618 (#length) value 0x10058e8
+obj Symbol 0x1005098 vt Symbol_vt 0x10051f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+--Testing Append--
+hello world
+(h length + w length) = (h append: w) length. True
+
+--Testing SizeInMemory--
+Size of h=21, Size of w=21 ,Size after append=26
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory +  sizeInMemory. True
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c[18P./ovmhello 
+vt Proto_vt 0x11ba0b8 parent 0x11ba158 (Object_vt) size 4 tally 4
+    0 key 0x11ba338 (#lookup) value 0x11ba6d8
+    1 key 0x11ba398 (#add_method) value 0x11ba708
+    2 key 0x11ba3f8 (#allocate) value 0x11ba798
+    3 key 0x11ba4b8 (#delegate) value 0x11ba7c8
+obj Proto 0x11ba138 vt Proto_vt 0x11ba0b8
+vt Object_vt 0x11ba158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x11ba678 (#sizeInMemory) value 0x11ba7f8
+obj Object 0x11ba118 vt Object_vt 0x11ba158
+vt Symbol_vt 0x11ba1f8 parent 0x11ba158 (Object_vt) size 4 tally 3
+    0 key 0x11ba518 (#new:) value 0x11ba828
+    1 key 0x11ba428 (#print) value 0x11ba858
+    2 key 0x11ba618 (#length) value 0x11ba8e8
+obj Symbol 0x11ba098 vt Symbol_vt 0x11ba1f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+--Testing Append--
+hello world
+(h length + w length) = (h append: w) length. True
+
+--Testing SizeInMemory--
+Size of h=21, Size of w=21 ,Size after append=26
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory + "" sizeInMemory. True
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -g -o ovmhello ovmhello.c
+ovmhello.c: In function ‘main’:
+ovmhello.c:186:6: error: redefinition of ‘size1’
+  int size1=oop2i(send(String_vt, s_sizeInMemory));
+      ^
+ovmhello.c:166:6: note: previous definition of ‘size1’ was here
+  int size1=oop2i(send(h, s_sizeInMemory));
+      ^
+ovmhello.c:188:6: error: redefinition of ‘size1’
+  int size1=oop2i(send(Object_vt, s_sizeInMemory));
+      ^
+ovmhello.c:186:6: note: previous definition of ‘size1’ was here
+  int size1=oop2i(send(String_vt, s_sizeInMemory));
+      ^
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello 
+vt Proto_vt 0x1cca0b8 parent 0x1cca158 (Object_vt) size 4 tally 4
+    0 key 0x1cca338 (#lookup) value 0x1cca6d8
+    1 key 0x1cca398 (#add_method) value 0x1cca708
+    2 key 0x1cca3f8 (#allocate) value 0x1cca798
+    3 key 0x1cca4b8 (#delegate) value 0x1cca7c8
+obj Proto 0x1cca138 vt Proto_vt 0x1cca0b8
+vt Object_vt 0x1cca158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x1cca678 (#sizeInMemory) value 0x1cca7f8
+obj Object 0x1cca118 vt Object_vt 0x1cca158
+vt Symbol_vt 0x1cca1f8 parent 0x1cca158 (Object_vt) size 4 tally 3
+    0 key 0x1cca518 (#new:) value 0x1cca828
+    1 key 0x1cca428 (#print) value 0x1cca858
+    2 key 0x1cca618 (#length) value 0x1cca8e8
+obj Symbol 0x1cca098 vt Symbol_vt 0x1cca1f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+--Testing Append--
+hello world
+(h length + w length) = (h append: w) length. True
+
+--Testing SizeInMemory--
+Size of h=21, Size of w=21 ,Size after append=26
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory + "" sizeInMemory. True
+Size in memory of String_vt is 48
+Size in memory of Object_vt is 48
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c[18P./ovmhello 
+vt Proto_vt 0x8a70b8 parent 0x8a7158 (Object_vt) size 4 tally 4
+    0 key 0x8a7338 (#lookup) value 0x8a76d8
+    1 key 0x8a7398 (#add_method) value 0x8a7708
+    2 key 0x8a73f8 (#allocate) value 0x8a7798
+    3 key 0x8a74b8 (#delegate) value 0x8a77c8
+obj Proto 0x8a7138 vt Proto_vt 0x8a70b8
+vt Object_vt 0x8a7158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x8a7678 (#sizeInMemory) value 0x8a77f8
+obj Object 0x8a7118 vt Object_vt 0x8a7158
+vt Symbol_vt 0x8a71f8 parent 0x8a7158 (Object_vt) size 4 tally 3
+    0 key 0x8a7518 (#new:) value 0x8a7828
+    1 key 0x8a7428 (#print) value 0x8a7858
+    2 key 0x8a7618 (#length) value 0x8a78e8
+obj Symbol 0x8a7098 vt Symbol_vt 0x8a71f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+--Testing Append--
+hello world
+(h length + w length) = (h append: w) length. True
+
+--Testing SizeInMemory--
+Size of h=21, Size of w=21 ,Size after append=26
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory + "" sizeInMemory. True
+Size in memory of String_vt is 48
+Size in memory of Atom_vt is 48
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c[18P./ovmhello 
+vt Proto_vt 0x19cd0b8 parent 0x19cd158 (Object_vt) size 4 tally 4
+    0 key 0x19cd338 (#lookup) value 0x19cd6d8
+    1 key 0x19cd398 (#add_method) value 0x19cd708
+    2 key 0x19cd3f8 (#allocate) value 0x19cd798
+    3 key 0x19cd4b8 (#delegate) value 0x19cd7c8
+obj Proto 0x19cd138 vt Proto_vt 0x19cd0b8
+vt Object_vt 0x19cd158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x19cd678 (#sizeInMemory) value 0x19cd7f8
+obj Object 0x19cd118 vt Object_vt 0x19cd158
+vt Symbol_vt 0x19cd1f8 parent 0x19cd158 (Object_vt) size 4 tally 3
+    0 key 0x19cd518 (#new:) value 0x19cd828
+    1 key 0x19cd428 (#print) value 0x19cd858
+    2 key 0x19cd618 (#length) value 0x19cd8e8
+obj Symbol 0x19cd098 vt Symbol_vt 0x19cd1f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+--Testing Append--
+hello world
+(h length + w length) = (h append: w) length. True
+
+--Testing SizeInMemory--
+Size of h=21, Size of w=21 ,Size after append=26
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory + "" sizeInMemory. True
+Size in memory of String is 8
+Size in memory of Symbol is 8
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c[18P./ovmhello 
+vt Proto_vt 0x1f340b8 parent 0x1f34158 (Object_vt) size 4 tally 4
+    0 key 0x1f34338 (#lookup) value 0x1f346d8
+    1 key 0x1f34398 (#add_method) value 0x1f34708
+    2 key 0x1f343f8 (#allocate) value 0x1f34798
+    3 key 0x1f344b8 (#delegate) value 0x1f347c8
+obj Proto 0x1f34138 vt Proto_vt 0x1f340b8
+vt Object_vt 0x1f34158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x1f34678 (#sizeInMemory) value 0x1f347f8
+obj Object 0x1f34118 vt Object_vt 0x1f34158
+vt Symbol_vt 0x1f341f8 parent 0x1f34158 (Object_vt) size 4 tally 3
+    0 key 0x1f34518 (#new:) value 0x1f34828
+    1 key 0x1f34428 (#print) value 0x1f34858
+    2 key 0x1f34618 (#length) value 0x1f348e8
+obj Symbol 0x1f34098 vt Symbol_vt 0x1f341f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+--Testing Append--
+hello world
+(h length + w length) = (h append: w) length. True
+
+--Testing SizeInMemory--
+Size of h=21, Size of w=21 ,Size after append=26
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory + "" sizeInMemory. True
+Size in memory of String h is 21
+Size in memory of Symbol s_append is 24
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -g -o ovmhello ovmhello.c[18P./ovmhello gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c[18P./ovmhello 
+vt Proto_vt 0x7d00b8 parent 0x7d0158 (Object_vt) size 4 tally 4
+    0 key 0x7d0338 (#lookup) value 0x7d06d8
+    1 key 0x7d0398 (#add_method) value 0x7d0708
+    2 key 0x7d03f8 (#allocate) value 0x7d0798
+    3 key 0x7d04b8 (#delegate) value 0x7d07c8
+obj Proto 0x7d0138 vt Proto_vt 0x7d00b8
+vt Object_vt 0x7d0158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x7d0678 (#sizeInMemory) value 0x7d07f8
+obj Object 0x7d0118 vt Object_vt 0x7d0158
+vt Symbol_vt 0x7d01f8 parent 0x7d0158 (Object_vt) size 4 tally 3
+    0 key 0x7d0518 (#new:) value 0x7d0828
+    1 key 0x7d0428 (#print) value 0x7d0858
+    2 key 0x7d0618 (#length) value 0x7d08e8
+obj Symbol 0x7d0098 vt Symbol_vt 0x7d01f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+--Testing Append--
+hello world
+(h length + w length) = (h append: w) length. True
+
+--Testing SizeInMemory--
+Size of h=21, Size of w=21 ,Size after append=26
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory + "" sizeInMemory. True
+Size in memory of String str6 is 26
+Size in memory of Symbol s_sizeInMemory is 29
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c[18P./ovmhello 
+vt Proto_vt 0x183a0b8 parent 0x183a158 (Object_vt) size 4 tally 4
+    0 key 0x183a338 (#lookup) value 0x183a6d8
+    1 key 0x183a398 (#add_method) value 0x183a708
+    2 key 0x183a3f8 (#allocate) value 0x183a798
+    3 key 0x183a4b8 (#delegate) value 0x183a7c8
+obj Proto 0x183a138 vt Proto_vt 0x183a0b8
+vt Object_vt 0x183a158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x183a678 (#sizeInMemory) value 0x183a7f8
+obj Object 0x183a118 vt Object_vt 0x183a158
+vt Symbol_vt 0x183a1f8 parent 0x183a158 (Object_vt) size 4 tally 3
+    0 key 0x183a518 (#new:) value 0x183a828
+    1 key 0x183a428 (#print) value 0x183a858
+    2 key 0x183a618 (#length) value 0x183a8e8
+obj Symbol 0x183a098 vt Symbol_vt 0x183a1f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+--Testing Append--
+hello world
+(h length + w length) = (h append: w) length. True
+
+--Testing SizeInMemory--
+Size of h=21, Size of w=21 ,Size after append=26
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory + "" sizeInMemory. True
+Size in memory of Symbol is 8
+Size in memory of Object is 8
+Size in memory of Proto is 8
+Size in memory of String is 8
+Size in memory of Symbol is 8
+Size in memory of h is 21
+Size in memory of String sp is 17
+Size in memory of Symbol s_at is 20
+Size in memory of Array line is 48
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -g -o ovmhello ovmhello.c
+ovmhello.c: In function ‘main’:
+ovmhello.c:204:53: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘long unsigned int’ [-Wformat=]
+  printf("sizeof(struct object)= %d\n",sizeof(struct object));
+                                                     ^
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello 
+vt Proto_vt 0x11000b8 parent 0x1100158 (Object_vt) size 4 tally 4
+    0 key 0x1100338 (#lookup) value 0x11006d8
+    1 key 0x1100398 (#add_method) value 0x1100708
+    2 key 0x11003f8 (#allocate) value 0x1100798
+    3 key 0x11004b8 (#delegate) value 0x11007c8
+obj Proto 0x1100138 vt Proto_vt 0x11000b8
+vt Object_vt 0x1100158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x1100678 (#sizeInMemory) value 0x11007f8
+obj Object 0x1100118 vt Object_vt 0x1100158
+vt Symbol_vt 0x11001f8 parent 0x1100158 (Object_vt) size 4 tally 3
+    0 key 0x1100518 (#new:) value 0x1100828
+    1 key 0x1100428 (#print) value 0x1100858
+    2 key 0x1100618 (#length) value 0x11008e8
+obj Symbol 0x1100098 vt Symbol_vt 0x11001f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+--Testing Append--
+hello world
+(h length + w length) = (h append: w) length. True
+
+--Testing SizeInMemory--
+Size of h=21, Size of w=21 ,Size after append=26
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory + "" sizeInMemory. True
+Size in memory of Symbol is 8
+Size in memory of Object is 8
+Size in memory of Proto is 8
+Size in memory of String is 8
+Size in memory of Array is 8
+Size in memory of h is 21
+Size in memory of String sp is 17
+Size in memory of Symbol s_at is 20
+Size in memory of Array line is 48
+sizeof(struct object)= 8
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c[18P./ovmhello 
+vt Proto_vt 0x159a0b8 parent 0x159a158 (Object_vt) size 4 tally 4
+    0 key 0x159a338 (#lookup) value 0x159a6d8
+    1 key 0x159a398 (#add_method) value 0x159a708
+    2 key 0x159a3f8 (#allocate) value 0x159a798
+    3 key 0x159a4b8 (#delegate) value 0x159a7c8
+obj Proto 0x159a138 vt Proto_vt 0x159a0b8
+vt Object_vt 0x159a158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x159a678 (#sizeInMemory) value 0x159a7f8
+obj Object 0x159a118 vt Object_vt 0x159a158
+vt Symbol_vt 0x159a1f8 parent 0x159a158 (Object_vt) size 4 tally 3
+    0 key 0x159a518 (#new:) value 0x159a828
+    1 key 0x159a428 (#print) value 0x159a858
+    2 key 0x159a618 (#length) value 0x159a8e8
+obj Symbol 0x159a098 vt Symbol_vt 0x159a1f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+--Testing Append--
+hello world
+(h length + w length) = (h append: w) length. True
+
+--Testing SizeInMemory--
+Size of h=21, Size of w=21 ,Size after append=26
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. False
+(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory + "" sizeInMemory. True
+Size in memory of Symbol is 8
+Size in memory of Object is 8
+Size in memory of Proto is 8
+Size in memory of String is 8
+Size in memory of Array is 8
+Size in memory of h is 21
+Size in memory of String sp is 17
+Size in memory of Symbol s_at is 20
+Size in memory of Array line is 48
+sizeof(struct symbol)= 16
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ exit
+exit
+
+Script done on Wed 29 Mar 2017 02:21:21 PM UTC
