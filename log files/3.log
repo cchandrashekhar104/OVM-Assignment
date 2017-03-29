@@ -1,0 +1,1136 @@
+Script started on Tue 28 Mar 2017 10:25:11 AM UTC
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhelloexit[Kgcc -o ovmhelloo[K ovmhello.c~ [K[K
+gcc: error: ovmhello.c: No such file or directory
+gcc: fatal error: no input files
+compilation terminated.
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ls
+1.log  3.log  ovm.c~    ovmhello.c~  test.c  vt.c
+2.log  ovm.c  ovmhello  test         vt
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ls
+1.log  3.log  ovm.c~    ovmhello.c   test    vt
+2.log  ovm.c  ovmhello  ovmhello.c~  test.c  vt.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ lsgcc -o ovmhello ovmhello.c
+In file included from ovmhello.c:1:0:
+ovm.c: In function ‘object_sizeInMemory’:
+ovm.c:323:23: error: ‘struct vtable’ has no member named ‘chars’
+  printf("%s\n",self_vt->chars);
+                       ^
+ovm.c:327:15: error: ‘len’ undeclared (first use in this function)
+  return i2oop(len);
+               ^
+ovm.c:17:50: note: in definition of macro ‘i2oop’
+ #define i2oop(i) ((struct object *)((char *)0 + (i)))
+                                                  ^
+ovm.c:327:15: note: each undeclared identifier is reported only once for each function it appears in
+  return i2oop(len);
+               ^
+ovm.c:17:50: note: in definition of macro ‘i2oop’
+ #define i2oop(i) ((struct object *)((char *)0 + (i)))
+                                                  ^
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c
+In file included from ovmhello.c:1:0:
+ovm.c: In function ‘object_sizeInMemory’:
+ovm.c:323:23: error: ‘struct vtable’ has no member named ‘chars’
+  printf("%s\n",self_vt->chars);
+                       ^
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello 
+vt Proto_vt 0x6cc0b8 parent 0x6cc158 (Object_vt) size 4 tally 4
+    0 key 0x6cc338 (#lookup) value 0x6cc608
+    1 key 0x6cc378 (#add_method) value 0x6cc628
+    2 key 0x6cc3c8 (#allocate) value 0x6cc138
+    3 key 0x6cc458 (#delegate) value 0x6cc118
+obj Proto 0x6cc678 vt Proto_vt 0x6cc0b8
+vt Object_vt 0x6cc158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x6cc428 (#sizeInMemory) value 0x6cc6d8
+obj Object 0x6cc698 vt Object_vt 0x6cc158
+vt Symbol_vt 0x6cc1f8 parent 0x6cc158 (Object_vt) size 4 tally 3
+    0 key 0x6cc488 (#new:) value 0x6cc6f8
+    1 key 0x6cc568 (#print) value 0x6cc718
+    2 key 0x6cc5a8 (#length) value 0x6cc278
+obj Symbol 0x6cc6b8 vt Symbol_vt 0x6cc1f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Proto
+obj self 0x6cc678 vt Proto_vt 0x6cc0b8
+vt Proto_vt 0x6cc0b8 parent 0x6cc158 (Object_vt) size 4 tally 4
+    0 key 0x6cc338 (#lookup) value 0x6cc608
+    1 key 0x6cc378 (#add_method) value 0x6cc628
+    2 key 0x6cc3c8 (#allocate) value 0x6cc138
+    3 key 0x6cc458 (#delegate) value 0x6cc118
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0x70a0b8 parent 0x70a158 (Object_vt) size 4 tally 4
+    0 key 0x70a338 (#lookup) value 0x70a608
+    1 key 0x70a378 (#add_method) value 0x70a628
+    2 key 0x70a3c8 (#allocate) value 0x70a138
+    3 key 0x70a458 (#delegate) value 0x70a118
+obj Proto 0x70a678 vt Proto_vt 0x70a0b8
+vt Object_vt 0x70a158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x70a428 (#sizeInMemory) value 0x70a6d8
+obj Object 0x70a698 vt Object_vt 0x70a158
+vt Symbol_vt 0x70a1f8 parent 0x70a158 (Object_vt) size 4 tally 3
+    0 key 0x70a488 (#new:) value 0x70a6f8
+    1 key 0x70a568 (#print) value 0x70a718
+    2 key 0x70a5a8 (#length) value 0x70a278
+obj Symbol 0x70a6b8 vt Symbol_vt 0x70a1f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Proto
+Segmentation fault (core dumped)
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gdb ./ovmhello 
+GNU gdb (Ubuntu 7.7.1-0ubuntu5~14.04.2) 7.7.1
+Copyright (C) 2014 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./ovmhello...(no debugging symbols found)...done.
+(gdb) run
+Starting program: /home/ubuntu/Desktop/MOS/ovmhello 
+vt Proto_vt 0x6050b8 parent 0x605158 (Object_vt) size 4 tally 4
+    0 key 0x605338 (#lookup) value 0x605608
+    1 key 0x605378 (#add_method) value 0x605628
+    2 key 0x6053c8 (#allocate) value 0x605138
+    3 key 0x605458 (#delegate) value 0x605118
+obj Proto 0x605678 vt Proto_vt 0x6050b8
+vt Object_vt 0x605158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x605428 (#sizeInMemory) value 0x6056d8
+obj Object 0x605698 vt Object_vt 0x605158
+vt Symbol_vt 0x6051f8 parent 0x605158 (Object_vt) size 4 tally 3
+    0 key 0x605488 (#new:) value 0x6056f8
+    1 key 0x605568 (#print) value 0x605718
+    2 key 0x6055a8 (#length) value 0x605278
+obj Symbol 0x6056b8 vt Symbol_vt 0x6051f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Proto
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0000000000400a67 in print_obj ()
+(gdb) Quit
+(gdb) Quit
+A debugging session is active.
+
+	Inferior 1 [process 4296] will be killed.
+
+Quit anyway? (y or n) y
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gdb ./ovmhello [4P[C[C[C[C[C[C[C[C[C[C[C
+vt Proto_vt 0x23110b8 parent 0x2311158 (Object_vt) size 4 tally 4
+    0 key 0x2311338 (#lookup) value 0x2311608
+    1 key 0x2311378 (#add_method) value 0x2311628
+    2 key 0x23113c8 (#allocate) value 0x2311138
+    3 key 0x2311458 (#delegate) value 0x2311118
+obj Proto 0x2311678 vt Proto_vt 0x23110b8
+vt Object_vt 0x2311158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x2311428 (#sizeInMemory) value 0x23116d8
+obj Object 0x2311698 vt Object_vt 0x2311158
+vt Symbol_vt 0x23111f8 parent 0x2311158 (Object_vt) size 4 tally 3
+    0 key 0x2311488 (#new:) value 0x23116f8
+    1 key 0x2311568 (#print) value 0x2311718
+    2 key 0x23115a8 (#length) value 0x2311278
+obj Symbol 0x23116b8 vt Symbol_vt 0x23111f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Proto
+Segmentation fault (core dumped)
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello [4@gdb [C[C[C[C[C[C[C[C[C[C[C[4P[C[C[C[C[C[C[C[C[C[C[Cgcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0x25990b8 parent 0x2599158 (Object_vt) size 4 tally 4
+    0 key 0x2599338 (#lookup) value 0x2599608
+    1 key 0x2599378 (#add_method) value 0x2599628
+    2 key 0x25993c8 (#allocate) value 0x2599138
+    3 key 0x2599458 (#delegate) value 0x2599118
+obj Proto 0x2599678 vt Proto_vt 0x25990b8
+vt Object_vt 0x2599158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x2599428 (#sizeInMemory) value 0x25996d8
+obj Object 0x2599698 vt Object_vt 0x2599158
+vt Symbol_vt 0x25991f8 parent 0x2599158 (Object_vt) size 4 tally 3
+    0 key 0x2599488 (#new:) value 0x25996f8
+    1 key 0x2599568 (#print) value 0x2599718
+    2 key 0x25995a8 (#length) value 0x2599278
+obj Symbol 0x25996b8 vt Symbol_vt 0x25991f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Proto
+vt Proto_vt 0x25990b8 parent 0x2599158 (Object_vt) size 4 tally 4
+    0 key 0x2599338 (#lookup) value 0x2599608
+    1 key 0x2599378 (#add_method) value 0x2599628
+    2 key 0x25993c8 (#allocate) value 0x2599138
+    3 key 0x2599458 (#delegate) value 0x2599118
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0x1cb20b8 parent 0x1cb2158 (Object_vt) size 4 tally 4
+    0 key 0x1cb2338 (#lookup) value 0x1cb2608
+    1 key 0x1cb2378 (#add_method) value 0x1cb2628
+    2 key 0x1cb23c8 (#allocate) value 0x1cb2138
+    3 key 0x1cb2458 (#delegate) value 0x1cb2118
+obj Proto 0x1cb2678 vt Proto_vt 0x1cb20b8
+vt Object_vt 0x1cb2158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x1cb2428 (#sizeInMemory) value 0x1cb26d8
+obj Object 0x1cb2698 vt Object_vt 0x1cb2158
+vt Symbol_vt 0x1cb21f8 parent 0x1cb2158 (Object_vt) size 4 tally 3
+    0 key 0x1cb2488 (#new:) value 0x1cb26f8
+    1 key 0x1cb2568 (#print) value 0x1cb2718
+    2 key 0x1cb25a8 (#length) value 0x1cb2278
+obj Symbol 0x1cb26b8 vt Symbol_vt 0x1cb21f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Proto
+Segmentation fault (core dumped)
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+In file included from ovmhello.c:1:0:
+ovm.c: In function ‘object_sizeInMemory’:
+ovm.c:325:12: error: ‘vt’ undeclared (first use in this function)
+  if(strcmp(vt->name,"Object"))
+            ^
+ovm.c:325:12: note: each undeclared identifier is reported only once for each function it appears in
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello 
+vt Proto_vt 0x19d60b8 parent 0x19d6158 (Object_vt) size 4 tally 4
+    0 key 0x19d6338 (#lookup) value 0x19d6608
+    1 key 0x19d6378 (#add_method) value 0x19d6628
+    2 key 0x19d63c8 (#allocate) value 0x19d6138
+    3 key 0x19d6458 (#delegate) value 0x19d6118
+obj Proto 0x19d6678 vt Proto_vt 0x19d60b8
+vt Object_vt 0x19d6158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x19d6428 (#sizeInMemory) value 0x19d66d8
+obj Object 0x19d6698 vt Object_vt 0x19d6158
+vt Symbol_vt 0x19d61f8 parent 0x19d6158 (Object_vt) size 4 tally 3
+    0 key 0x19d6488 (#new:) value 0x19d66f8
+    1 key 0x19d6568 (#print) value 0x19d6718
+    2 key 0x19d65a8 (#length) value 0x19d6278
+obj Symbol 0x19d66b8 vt Symbol_vt 0x19d61f8
+#(null)Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Proto
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+In file included from ovmhello.c:1:0:
+ovm.c: In function ‘init_ovm’:
+ovm.c:385:47: error: ‘struct object’ has no member named ‘string’
+  printf("%lu\n",sizeof((struct symbol *)Symbol->string));
+                                               ^
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0xbfb0b8 parent 0xbfb158 (Object_vt) size 4 tally 4
+    0 key 0xbfb338 (#lookup) value 0xbfb608
+    1 key 0xbfb378 (#add_method) value 0xbfb628
+    2 key 0xbfb3c8 (#allocate) value 0xbfb138
+    3 key 0xbfb458 (#delegate) value 0xbfb118
+obj Proto 0xbfb678 vt Proto_vt 0xbfb0b8
+vt Object_vt 0xbfb158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0xbfb428 (#sizeInMemory) value 0xbfb6d8
+obj Object 0xbfb698 vt Object_vt 0xbfb158
+vt Symbol_vt 0xbfb1f8 parent 0xbfb158 (Object_vt) size 4 tally 3
+    0 key 0xbfb488 (#new:) value 0xbfb6f8
+    1 key 0xbfb568 (#print) value 0xbfb718
+    2 key 0xbfb5a8 (#length) value 0xbfb278
+obj Symbol 0xbfb6b8 vt Symbol_vt 0xbfb1f8
+8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Proto
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0x1a110b8 parent 0x1a11158 (Object_vt) size 4 tally 4
+    0 key 0x1a11338 (#lookup) value 0x1a11608
+    1 key 0x1a11378 (#add_method) value 0x1a11628
+    2 key 0x1a113c8 (#allocate) value 0x1a11138
+    3 key 0x1a11458 (#delegate) value 0x1a11118
+obj Proto 0x1a11678 vt Proto_vt 0x1a110b8
+vt Object_vt 0x1a11158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x1a11428 (#sizeInMemory) value 0x1a116d8
+obj Object 0x1a11698 vt Object_vt 0x1a11158
+vt Symbol_vt 0x1a111f8 parent 0x1a11158 (Object_vt) size 4 tally 3
+    0 key 0x1a11488 (#new:) value 0x1a116f8
+    1 key 0x1a11568 (#print) value 0x1a11718
+    2 key 0x1a115a8 (#length) value 0x1a11278
+obj Symbol 0x1a116b8 vt Symbol_vt 0x1a111f8
+8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Proto
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0x24e40b8 parent 0x24e4158 (Object_vt) size 4 tally 4
+    0 key 0x24e4338 (#lookup) value 0x24e4608
+    1 key 0x24e4378 (#add_method) value 0x24e4628
+    2 key 0x24e43c8 (#allocate) value 0x24e4138
+    3 key 0x24e4458 (#delegate) value 0x24e4118
+obj Proto 0x24e4678 vt Proto_vt 0x24e40b8
+vt Object_vt 0x24e4158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x24e4428 (#sizeInMemory) value 0x24e46d8
+obj Object 0x24e4698 vt Object_vt 0x24e4158
+vt Symbol_vt 0x24e41f8 parent 0x24e4158 (Object_vt) size 4 tally 3
+    0 key 0x24e4488 (#new:) value 0x24e46f8
+    1 key 0x24e4568 (#print) value 0x24e4718
+    2 key 0x24e45a8 (#length) value 0x24e4278
+obj Symbol 0x24e46b8 vt Symbol_vt 0x24e41f8
+Segmentation fault (core dumped)
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0xeb80b8 parent 0xeb8158 (Object_vt) size 4 tally 4
+    0 key 0xeb8338 (#lookup) value 0xeb8608
+    1 key 0xeb8378 (#add_method) value 0xeb8628
+    2 key 0xeb83c8 (#allocate) value 0xeb8138
+    3 key 0xeb8458 (#delegate) value 0xeb8118
+obj Proto 0xeb8678 vt Proto_vt 0xeb80b8
+vt Object_vt 0xeb8158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0xeb8428 (#sizeInMemory) value 0xeb86d8
+obj Object 0xeb8698 vt Object_vt 0xeb8158
+vt Symbol_vt 0xeb81f8 parent 0xeb8158 (Object_vt) size 4 tally 3
+    0 key 0xeb8488 (#new:) value 0xeb86f8
+    1 key 0xeb8568 (#print) value 0xeb8718
+    2 key 0xeb85a8 (#length) value 0xeb8278
+obj Symbol 0xeb86b8 vt Symbol_vt 0xeb81f8
+Segmentation fault (core dumped)
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0xce50b8 parent 0xce5158 (Object_vt) size 4 tally 4
+    0 key 0xce5338 (#lookup) value 0xce5608
+    1 key 0xce5378 (#add_method) value 0xce5628
+    2 key 0xce53c8 (#allocate) value 0xce5138
+    3 key 0xce5458 (#delegate) value 0xce5118
+obj Proto 0xce5678 vt Proto_vt 0xce50b8
+vt Object_vt 0xce5158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0xce5428 (#sizeInMemory) value 0xce56d8
+obj Object 0xce5698 vt Object_vt 0xce5158
+vt Symbol_vt 0xce51f8 parent 0xce5158 (Object_vt) size 4 tally 3
+    0 key 0xce5488 (#new:) value 0xce56f8
+    1 key 0xce5568 (#print) value 0xce5718
+    2 key 0xce55a8 (#length) value 0xce5278
+obj Symbol 0xce56b8 vt Symbol_vt 0xce51f8
+#(null)
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Proto
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+Size = 48
+Size = 48
+Size = 48
+Size = 48
+Size = 48
+Size = 23
+Size = 24
+Size = 27
+Size = 24
+Size = 25
+Size = 24
+Size = 25
+Size = 24
+Size = 21
+Size = 24
+Size = 22
+Size = 24
+Size = 23
+Size = 24
+Size = 29
+Size = 24
+Size = 24
+Size = 24
+Size = 24
+Size = 24
+Size = 8
+Size = 8
+Size = 8
+Size = 24
+vt Proto_vt 0xcaa0b8 parent 0xcaa158 (Object_vt) size 4 tally 4
+    0 key 0xcaa338 (#lookup) value 0xcaa608
+    1 key 0xcaa378 (#add_method) value 0xcaa628
+    2 key 0xcaa3c8 (#allocate) value 0xcaa138
+    3 key 0xcaa458 (#delegate) value 0xcaa118
+obj Proto 0xcaa678 vt Proto_vt 0xcaa0b8
+vt Object_vt 0xcaa158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0xcaa428 (#sizeInMemory) value 0xcaa6d8
+obj Object 0xcaa698 vt Object_vt 0xcaa158
+Size = 24
+Size = 24
+Size = 24
+vt Symbol_vt 0xcaa1f8 parent 0xcaa158 (Object_vt) size 4 tally 3
+    0 key 0xcaa488 (#new:) value 0xcaa6f8
+    1 key 0xcaa568 (#print) value 0xcaa718
+    2 key 0xcaa5a8 (#length) value 0xcaa278
+obj Symbol 0xcaa6b8 vt Symbol_vt 0xcaa1f8
+Segmentation fault (core dumped)
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+Size = 48
+Size = 48
+Size = 48
+Size = 48
+Size = 48
+Size = 23
+Size = 24
+Size = 27
+Size = 24
+Size = 25
+Size = 24
+Size = 25
+Size = 24
+Size = 21
+Size = 24
+Size = 22
+Size = 24
+Size = 23
+Size = 24
+Size = 29
+Size = 24
+Size = 24
+Size = 24
+Size = 24
+Size = 24
+Size = 8
+Size = 8
+Size = 8
+Size = 24
+vt Proto_vt 0x7080b8 parent 0x708158 (Object_vt) size 4 tally 4
+    0 key 0x708338 (#lookup) value 0x708608
+    1 key 0x708378 (#add_method) value 0x708628
+    2 key 0x7083c8 (#allocate) value 0x708138
+    3 key 0x708458 (#delegate) value 0x708118
+obj Proto 0x708678 vt Proto_vt 0x7080b8
+vt Object_vt 0x708158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x708428 (#sizeInMemory) value 0x7086d8
+obj Object 0x708698 vt Object_vt 0x708158
+Size = 24
+Size = 24
+Size = 24
+vt Symbol_vt 0x7081f8 parent 0x708158 (Object_vt) size 4 tally 3
+    0 key 0x708488 (#new:) value 0x7086f8
+    1 key 0x708568 (#print) value 0x708718
+    2 key 0x7085a8 (#length) value 0x708278
+obj Symbol 0x7086b8 vt Symbol_vt 0x7081f8
+Segmentation fault (core dumped)
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gdb ./ovmhello 
+GNU gdb (Ubuntu 7.7.1-0ubuntu5~14.04.2) 7.7.1
+Copyright (C) 2014 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./ovmhello...(no debugging symbols found)...done.
+(gdb) run
+Starting program: /home/ubuntu/Desktop/MOS/ovmhello 
+Size = 48
+Size = 48
+Size = 48
+Size = 48
+Size = 48
+Size = 23
+Size = 24
+Size = 27
+Size = 24
+Size = 25
+Size = 24
+Size = 25
+Size = 24
+Size = 21
+Size = 24
+Size = 22
+Size = 24
+Size = 23
+Size = 24
+Size = 29
+Size = 24
+Size = 24
+Size = 24
+Size = 24
+Size = 24
+Size = 8
+Size = 8
+Size = 8
+Size = 24
+vt Proto_vt 0x6050b8 parent 0x605158 (Object_vt) size 4 tally 4
+    0 key 0x605338 (#lookup) value 0x605608
+    1 key 0x605378 (#add_method) value 0x605628
+    2 key 0x6053c8 (#allocate) value 0x605138
+    3 key 0x605458 (#delegate) value 0x605118
+obj Proto 0x605678 vt Proto_vt 0x6050b8
+vt Object_vt 0x605158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x605428 (#sizeInMemory) value 0x6056d8
+obj Object 0x605698 vt Object_vt 0x605158
+Size = 24
+Size = 24
+Size = 24
+vt Symbol_vt 0x6051f8 parent 0x605158 (Object_vt) size 4 tally 3
+    0 key 0x605488 (#new:) value 0x6056f8
+    1 key 0x605568 (#print) value 0x605718
+    2 key 0x6055a8 (#length) value 0x605278
+obj Symbol 0x6056b8 vt Symbol_vt 0x6051f8
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7a60a03 in _IO_vfprintf_internal (s=<optimized out>, 
+    format=<optimized out>, ap=ap@entry=0x7fffffffdba8) at vfprintf.c:1661
+1661	vfprintf.c: No such file or directory.
+(gdb) quit
+A debugging session is active.
+
+	Inferior 1 [process 4484] will be killed.
+
+Quit anyway? (y or n) y
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gdb ./ovmhello [4P[C[C[C[C[C[C[C[C[C[C[Cgcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[11Pdb ./ovmhello 
+GNU gdb (Ubuntu 7.7.1-0ubuntu5~14.04.2) 7.7.1
+Copyright (C) 2014 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./ovmhello...(no debugging symbols found)...done.
+(gdb) quit
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gdb ./ovmhello cc -o ovmhello ovmhello.c[11Pdb ./ovmhello [4P[C[C[C[C[C[C[C[C[C[C[C
+Size = 48
+Size = 48
+Size = 48
+Size = 48
+Size = 48
+Size = 23
+Size = 24
+Size = 27
+Size = 24
+Size = 25
+Size = 24
+Size = 25
+Size = 24
+Size = 21
+Size = 24
+Size = 22
+Size = 24
+Size = 23
+Size = 24
+Size = 29
+Size = 24
+Size = 24
+Size = 24
+Size = 24
+Size = 24
+Size = 8
+Size = 8
+Size = 8
+Size = 24
+vt Proto_vt 0x1f680b8 parent 0x1f68158 (Object_vt) size 4 tally 4
+    0 key 0x1f68338 (#lookup) value 0x1f68608
+    1 key 0x1f68378 (#add_method) value 0x1f68628
+    2 key 0x1f683c8 (#allocate) value 0x1f68138
+    3 key 0x1f68458 (#delegate) value 0x1f68118
+obj Proto 0x1f68678 vt Proto_vt 0x1f680b8
+vt Object_vt 0x1f68158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x1f68428 (#sizeInMemory) value 0x1f686d8
+obj Object 0x1f68698 vt Object_vt 0x1f68158
+Size = 24
+Size = 24
+Size = 24
+vt Symbol_vt 0x1f681f8 parent 0x1f68158 (Object_vt) size 4 tally 3
+    0 key 0x1f68488 (#new:) value 0x1f686f8
+    1 key 0x1f68568 (#print) value 0x1f68718
+    2 key 0x1f685a8 (#length) value 0x1f68278
+obj Symbol 0x1f686b8 vt Symbol_vt 0x1f681f8
+Object Machine ready
+Size = 20
+Size = 24
+Size = 24
+Size = 24
+Size = 24
+Size = 24
+Testing String
+Size = 48
+Size = 8
+Size = 24
+Size = 24
+Size = 24
+Size = 24
+Size = 24
+Size = 24
+Size = 24
+Size = 24
+Size = 24
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+Size = 48
+Size = 8
+Size = 24
+Size = 24
+Size = 24
+Size = 24
+Size = 24
+array elements 4
+hello world
+
+
+Size = 24
+hello
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello [4@gdb [C[C[C[C[C[C[C[C[C[C[Ccc -o ovmhello ovmhello.c[11Pdb ./ovmhello cc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello [4@gdb [C[C[C[C[C[C[C[C[C[C[C[4P[C[C[C[C[C[C[C[C[C[C[C
+vt Proto_vt 0x1ce30b8 parent 0x1ce3158 (Object_vt) size 4 tally 4
+    0 key 0x1ce3338 (#lookup) value 0x1ce3608
+    1 key 0x1ce3378 (#add_method) value 0x1ce3628
+    2 key 0x1ce33c8 (#allocate) value 0x1ce3138
+    3 key 0x1ce3458 (#delegate) value 0x1ce3118
+obj Proto 0x1ce3678 vt Proto_vt 0x1ce30b8
+vt Object_vt 0x1ce3158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x1ce3428 (#sizeInMemory) value 0x1ce36d8
+obj Object 0x1ce3698 vt Object_vt 0x1ce3158
+vt Symbol_vt 0x1ce31f8 parent 0x1ce3158 (Object_vt) size 4 tally 3
+    0 key 0x1ce3488 (#new:) value 0x1ce36f8
+    1 key 0x1ce3568 (#print) value 0x1ce3718
+    2 key 0x1ce35a8 (#length) value 0x1ce3278
+obj Symbol 0x1ce36b8 vt Symbol_vt 0x1ce31f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Size of h 5
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0x16a40b8 parent 0x16a4158 (Object_vt) size 4 tally 4
+    0 key 0x16a4338 (#lookup) value 0x16a4608
+    1 key 0x16a4378 (#add_method) value 0x16a4628
+    2 key 0x16a43c8 (#allocate) value 0x16a4138
+    3 key 0x16a4458 (#delegate) value 0x16a4118
+obj Proto 0x16a4678 vt Proto_vt 0x16a40b8
+vt Object_vt 0x16a4158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x16a4428 (#sizeInMemory) value 0x16a46d8
+obj Object 0x16a4698 vt Object_vt 0x16a4158
+vt Symbol_vt 0x16a41f8 parent 0x16a4158 (Object_vt) size 4 tally 3
+    0 key 0x16a4488 (#new:) value 0x16a46f8
+    1 key 0x16a4568 (#print) value 0x16a4718
+    2 key 0x16a45a8 (#length) value 0x16a4278
+obj Symbol 0x16a46b8 vt Symbol_vt 0x16a41f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Size of h 8
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0x17eb0b8 parent 0x17eb158 (Object_vt) size 4 tally 4
+    0 key 0x17eb338 (#lookup) value 0x17eb608
+    1 key 0x17eb378 (#add_method) value 0x17eb628
+    2 key 0x17eb3c8 (#allocate) value 0x17eb138
+    3 key 0x17eb458 (#delegate) value 0x17eb118
+obj Proto 0x17eb678 vt Proto_vt 0x17eb0b8
+vt Object_vt 0x17eb158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x17eb428 (#sizeInMemory) value 0x17eb6d8
+obj Object 0x17eb698 vt Object_vt 0x17eb158
+vt Symbol_vt 0x17eb1f8 parent 0x17eb158 (Object_vt) size 4 tally 3
+    0 key 0x17eb488 (#new:) value 0x17eb6f8
+    1 key 0x17eb568 (#print) value 0x17eb718
+    2 key 0x17eb5a8 (#length) value 0x17eb278
+obj Symbol 0x17eb6b8 vt Symbol_vt 0x17eb1f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Size of h 8
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0xd540b8 parent 0xd54158 (Object_vt) size 4 tally 4
+    0 key 0xd54338 (#lookup) value 0xd54608
+    1 key 0xd54378 (#add_method) value 0xd54628
+    2 key 0xd543c8 (#allocate) value 0xd54138
+    3 key 0xd54458 (#delegate) value 0xd54118
+obj Proto 0xd54678 vt Proto_vt 0xd540b8
+vt Object_vt 0xd54158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0xd54428 (#sizeInMemory) value 0xd546d8
+obj Object 0xd54698 vt Object_vt 0xd54158
+vt Symbol_vt 0xd541f8 parent 0xd54158 (Object_vt) size 4 tally 3
+    0 key 0xd54488 (#new:) value 0xd546f8
+    1 key 0xd54568 (#print) value 0xd54718
+    2 key 0xd545a8 (#length) value 0xd54278
+obj Symbol 0xd546b8 vt Symbol_vt 0xd541f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Size of h 8
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0x18420b8 parent 0x1842158 (Object_vt) size 4 tally 4
+    0 key 0x1842338 (#lookup) value 0x1842608
+    1 key 0x1842378 (#add_method) value 0x1842628
+    2 key 0x18423c8 (#allocate) value 0x1842138
+    3 key 0x1842458 (#delegate) value 0x1842118
+obj Proto 0x1842678 vt Proto_vt 0x18420b8
+vt Object_vt 0x1842158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x1842428 (#sizeInMemory) value 0x18426d8
+obj Object 0x1842698 vt Object_vt 0x1842158
+vt Symbol_vt 0x18421f8 parent 0x1842158 (Object_vt) size 4 tally 3
+    0 key 0x1842488 (#new:) value 0x18426f8
+    1 key 0x1842568 (#print) value 0x1842718
+    2 key 0x18425a8 (#length) value 0x1842278
+obj Symbol 0x18426b8 vt Symbol_vt 0x18421f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Size of h 8
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0x190f0b8 parent 0x190f158 (Object_vt) size 4 tally 4
+    0 key 0x190f338 (#lookup) value 0x190f608
+    1 key 0x190f378 (#add_method) value 0x190f628
+    2 key 0x190f3c8 (#allocate) value 0x190f138
+    3 key 0x190f458 (#delegate) value 0x190f118
+obj Proto 0x190f678 vt Proto_vt 0x190f0b8
+vt Object_vt 0x190f158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x190f428 (#sizeInMemory) value 0x190f6d8
+obj Object 0x190f698 vt Object_vt 0x190f158
+vt Symbol_vt 0x190f1f8 parent 0x190f158 (Object_vt) size 4 tally 3
+    0 key 0x190f488 (#new:) value 0x190f6f8
+    1 key 0x190f568 (#print) value 0x190f718
+    2 key 0x190f5a8 (#length) value 0x190f278
+obj Symbol 0x190f6b8 vt Symbol_vt 0x190f1f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Size of h 8
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+ovmhello.c: In function ‘main’:
+ovmhello.c:158:33: error: ‘struct symbol’ has no member named ‘size’
+  printf("Size of h %d\n",s_print->size);
+                                 ^
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0x24500b8 parent 0x2450158 (Object_vt) size 4 tally 4
+    0 key 0x2450338 (#lookup) value 0x2450608
+    1 key 0x2450378 (#add_method) value 0x2450628
+    2 key 0x24503c8 (#allocate) value 0x2450138
+    3 key 0x2450458 (#delegate) value 0x2450118
+obj Proto 0x2450678 vt Proto_vt 0x24500b8
+vt Object_vt 0x2450158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x2450428 (#sizeInMemory) value 0x24506d8
+obj Object 0x2450698 vt Object_vt 0x2450158
+vt Symbol_vt 0x24501f8 parent 0x2450158 (Object_vt) size 4 tally 3
+    0 key 0x2450488 (#new:) value 0x24506f8
+    1 key 0x2450568 (#print) value 0x2450718
+    2 key 0x24505a8 (#length) value 0x2450278
+obj Symbol 0x24506b8 vt Symbol_vt 0x24501f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Size of h 38077808
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0x1be40b8 parent 0x1be4158 (Object_vt) size 4 tally 4
+    0 key 0x1be4338 (#lookup) value 0x1be4608
+    1 key 0x1be4378 (#add_method) value 0x1be4628
+    2 key 0x1be43c8 (#allocate) value 0x1be4138
+    3 key 0x1be4458 (#delegate) value 0x1be4118
+obj Proto 0x1be4678 vt Proto_vt 0x1be40b8
+vt Object_vt 0x1be4158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x1be4428 (#sizeInMemory) value 0x1be46d8
+obj Object 0x1be4698 vt Object_vt 0x1be4158
+vt Symbol_vt 0x1be41f8 parent 0x1be4158 (Object_vt) size 4 tally 3
+    0 key 0x1be4488 (#new:) value 0x1be46f8
+    1 key 0x1be4568 (#print) value 0x1be4718
+    2 key 0x1be45a8 (#length) value 0x1be4278
+obj Symbol 0x1be46b8 vt Symbol_vt 0x1be41f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Size of h 29246048
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0x13030b8 parent 0x1303158 (Object_vt) size 4 tally 4
+    0 key 0x1303338 (#lookup) value 0x1303608
+    1 key 0x1303378 (#add_method) value 0x1303628
+    2 key 0x13033c8 (#allocate) value 0x1303138
+    3 key 0x1303458 (#delegate) value 0x1303118
+obj Proto 0x1303678 vt Proto_vt 0x13030b8
+vt Object_vt 0x1303158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x1303428 (#sizeInMemory) value 0x13036d8
+obj Object 0x1303698 vt Object_vt 0x1303158
+vt Symbol_vt 0x13031f8 parent 0x1303158 (Object_vt) size 4 tally 3
+    0 key 0x1303488 (#new:) value 0x13036f8
+    1 key 0x1303568 (#print) value 0x1303718
+    2 key 0x13035a8 (#length) value 0x1303278
+obj Symbol 0x13036b8 vt Symbol_vt 0x13031f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Size of h 1
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0x11850b8 parent 0x1185158 (Object_vt) size 4 tally 4
+    0 key 0x1185338 (#lookup) value 0x1185608
+    1 key 0x1185378 (#add_method) value 0x1185628
+    2 key 0x11853c8 (#allocate) value 0x1185138
+    3 key 0x1185458 (#delegate) value 0x1185118
+obj Proto 0x1185678 vt Proto_vt 0x11850b8
+vt Object_vt 0x1185158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x1185428 (#sizeInMemory) value 0x11856d8
+obj Object 0x1185698 vt Object_vt 0x1185158
+vt Symbol_vt 0x11851f8 parent 0x1185158 (Object_vt) size 4 tally 3
+    0 key 0x1185488 (#new:) value 0x11856f8
+    1 key 0x1185568 (#print) value 0x1185718
+    2 key 0x11855a8 (#length) value 0x1185278
+obj Symbol 0x11856b8 vt Symbol_vt 0x11851f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Size of h 5
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0x25860b8 parent 0x2586158 (Object_vt) size 4 tally 4
+    0 key 0x2586338 (#lookup) value 0x2586608
+    1 key 0x2586378 (#add_method) value 0x2586628
+    2 key 0x25863c8 (#allocate) value 0x2586138
+    3 key 0x2586458 (#delegate) value 0x2586118
+obj Proto 0x2586678 vt Proto_vt 0x25860b8
+vt Object_vt 0x2586158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x2586428 (#sizeInMemory) value 0x25866d8
+obj Object 0x2586698 vt Object_vt 0x2586158
+vt Symbol_vt 0x25861f8 parent 0x2586158 (Object_vt) size 4 tally 3
+    0 key 0x2586488 (#new:) value 0x25866f8
+    1 key 0x2586568 (#print) value 0x2586718
+    2 key 0x25865a8 (#length) value 0x2586278
+obj Symbol 0x25866b8 vt Symbol_vt 0x25861f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Size of h 1
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0x68b0b8 parent 0x68b158 (Object_vt) size 4 tally 4
+    0 key 0x68b338 (#lookup) value 0x68b608
+    1 key 0x68b378 (#add_method) value 0x68b628
+    2 key 0x68b3c8 (#allocate) value 0x68b138
+    3 key 0x68b458 (#delegate) value 0x68b118
+obj Proto 0x68b678 vt Proto_vt 0x68b0b8
+vt Object_vt 0x68b158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x68b428 (#sizeInMemory) value 0x68b6d8
+obj Object 0x68b698 vt Object_vt 0x68b158
+vt Symbol_vt 0x68b1f8 parent 0x68b158 (Object_vt) size 4 tally 3
+    0 key 0x68b488 (#new:) value 0x68b6f8
+    1 key 0x68b568 (#print) value 0x68b718
+    2 key 0x68b5a8 (#length) value 0x68b278
+obj Symbol 0x68b6b8 vt Symbol_vt 0x68b1f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Size of h 4
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0x12190b8 parent 0x1219158 (Object_vt) size 4 tally 4
+    0 key 0x1219338 (#lookup) value 0x1219608
+    1 key 0x1219378 (#add_method) value 0x1219628
+    2 key 0x12193c8 (#allocate) value 0x1219138
+    3 key 0x1219458 (#delegate) value 0x1219118
+obj Proto 0x1219678 vt Proto_vt 0x12190b8
+vt Object_vt 0x1219158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x1219428 (#sizeInMemory) value 0x12196d8
+obj Object 0x1219698 vt Object_vt 0x1219158
+vt Symbol_vt 0x12191f8 parent 0x1219158 (Object_vt) size 4 tally 3
+    0 key 0x1219488 (#new:) value 0x12196f8
+    1 key 0x1219568 (#print) value 0x1219718
+    2 key 0x12195a8 (#length) value 0x1219278
+obj Symbol 0x12196b8 vt Symbol_vt 0x12191f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Size of h 4
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0x21e70b8 parent 0x21e7158 (Object_vt) size 4 tally 4
+    0 key 0x21e7338 (#lookup) value 0x21e7608
+    1 key 0x21e7378 (#add_method) value 0x21e7628
+    2 key 0x21e73c8 (#allocate) value 0x21e7138
+    3 key 0x21e7458 (#delegate) value 0x21e7118
+obj Proto 0x21e7678 vt Proto_vt 0x21e70b8
+vt Object_vt 0x21e7158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x21e7428 (#sizeInMemory) value 0x21e76d8
+obj Object 0x21e7698 vt Object_vt 0x21e7158
+vt Symbol_vt 0x21e71f8 parent 0x21e7158 (Object_vt) size 4 tally 3
+    0 key 0x21e7488 (#new:) value 0x21e76f8
+    1 key 0x21e7568 (#print) value 0x21e7718
+    2 key 0x21e75a8 (#length) value 0x21e7278
+obj Symbol 0x21e76b8 vt Symbol_vt 0x21e71f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Size of h 4
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0x16340b8 parent 0x1634158 (Object_vt) size 4 tally 4
+    0 key 0x1634338 (#lookup) value 0x1634608
+    1 key 0x1634378 (#add_method) value 0x1634628
+    2 key 0x16343c8 (#allocate) value 0x1634138
+    3 key 0x1634458 (#delegate) value 0x1634118
+obj Proto 0x1634678 vt Proto_vt 0x16340b8
+vt Object_vt 0x1634158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0x1634428 (#sizeInMemory) value 0x16346d8
+obj Object 0x1634698 vt Object_vt 0x1634158
+vt Symbol_vt 0x16341f8 parent 0x1634158 (Object_vt) size 4 tally 3
+    0 key 0x1634488 (#new:) value 0x16346f8
+    1 key 0x1634568 (#print) value 0x1634718
+    2 key 0x16345a8 (#length) value 0x1634278
+obj Symbol 0x16346b8 vt Symbol_vt 0x16341f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Size of h 5
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello gcc -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[15P./ovmhello 
+vt Proto_vt 0xabd0b8 parent 0xabd158 (Object_vt) size 4 tally 4
+    0 key 0xabd338 (#lookup) value 0xabd608
+    1 key 0xabd378 (#add_method) value 0xabd628
+    2 key 0xabd3c8 (#allocate) value 0xabd138
+    3 key 0xabd458 (#delegate) value 0xabd118
+obj Proto 0xabd678 vt Proto_vt 0xabd0b8
+vt Object_vt 0xabd158 parent (nil) ((nil)_vt) size 2 tally 1
+    0 key 0xabd428 (#sizeInMemory) value 0xabd6d8
+obj Object 0xabd698 vt Object_vt 0xabd158
+vt Symbol_vt 0xabd1f8 parent 0xabd158 (Object_vt) size 4 tally 3
+    0 key 0xabd488 (#new:) value 0xabd6f8
+    1 key 0xabd568 (#print) value 0xabd718
+    2 key 0xabd5a8 (#length) value 0xabd278
+obj Symbol 0xabd6b8 vt Symbol_vt 0xabd1f8
+Object Machine ready
+Testing String
+Object Machine v1.0
+hello length 5
+hello world
+Testing Array
+array elements 4
+hello world
+
+
+hello
+Size of h 18
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ exit
+exit
+
+Script done on Tue 28 Mar 2017 03:29:37 PM UTC

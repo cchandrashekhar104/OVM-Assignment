@@ -1,0 +1,89 @@
+Script started on Tue 28 Mar 2017 03:43:33 AM UTC
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./vt
+sizeof int     = 4
+sizeof pointer = 8
+sizeof object  = 0
+sizeof vtable  = 40
+sizeof symbol  = 8
+alloc (nil) size  40 = mem 0x2282010 oop 0x2282018
+alloc (nil) size  40 = mem 0x22820b0 oop 0x22820b8
+alloc (nil) size  40 = mem 0x2282150 oop 0x2282158
+alloc 0x22820b8 size  40 = mem 0x22821f0 oop 0x22821f8
+alloc 0x22820b8 size   0 = mem 0x2282290 oop 0x2282298
+alloc 0x2282158 size   0 = mem 0x22822b0 oop 0x22822b8
+alloc 0x22821f8 size   0 = mem 0x22822d0 oop 0x22822d8
+alloc 0x2282018 size  15 = mem 0x22822f0 oop 0x22822f8
+alloc 0x2282018 size  18 = mem 0x2282310 oop 0x2282318
+alloc 0x2282018 size  14 = mem 0x2282340 oop 0x2282348
+alloc 0x2282018 size  13 = mem 0x2282090 oop 0x2282098
+vt      atom 0x2282018 vt (nil) -> (nil)
+vt     proto 0x22820b8 vt 0x22820b8 -> 0x2282158
+vt    object 0x2282158 vt 0x22820b8 -> (nil)
+vt    symbol 0x22821f8 vt 0x22820b8 -> 0x2282158
+Proto  0x2282298 vt 0x22820b8 -> 0x2282158
+Object 0x22822b8 vt 0x2282158 -> (nil)
+Symbol 0x22822d8 vt 0x22821f8 -> 0x2282158
+Direct invocation of new: and print
+alloc 0x22821f8 size   8 = mem 0x2282070 oop 0x2282078
+Machine Foo is ready
+Testing keyword new: operator
+alloc 0x22821f8 size   8 = mem 0x22823e0 oop 0x22823e8
+symbol oop    0x22823e8
+symbol vt     0x22821f8
+symbol string 0x2282400
+Testing unary print operator
+Machine Foo is ready
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./vt[K[K[K[Kgcc -o vt vt.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./vt 
+sizeof int     = 4
+sizeof pointer = 8
+sizeof object  = 0
+sizeof vtable  = 40
+sizeof symbol  = 8
+alloc (nil) size  40 = mem 0xaa7010 oop 0xaa7018
+alloc (nil) size  40 = mem 0xaa70b0 oop 0xaa70b8
+alloc (nil) size  40 = mem 0xaa7150 oop 0xaa7158
+alloc 0xaa70b8 size  40 = mem 0xaa71f0 oop 0xaa71f8
+alloc 0xaa70b8 size   0 = mem 0xaa7290 oop 0xaa7298
+....
+alloc 0xaa7158 size   0 = mem 0xaa72b0 oop 0xaa72b8
+alloc 0xaa71f8 size   0 = mem 0xaa72d0 oop 0xaa72d8
+alloc 0xaa7018 size  15 = mem 0xaa72f0 oop 0xaa72f8
+alloc 0xaa7018 size  18 = mem 0xaa7310 oop 0xaa7318
+alloc 0xaa7018 size  14 = mem 0xaa7340 oop 0xaa7348
+alloc 0xaa7018 size  13 = mem 0xaa7090 oop 0xaa7098
+vt      atom 0xaa7018 vt (nil) -> (nil)
+vt     proto 0xaa70b8 vt 0xaa70b8 -> 0xaa7158
+vt    object 0xaa7158 vt 0xaa70b8 -> (nil)
+vt    symbol 0xaa71f8 vt 0xaa70b8 -> 0xaa7158
+Proto  0xaa7298 vt 0xaa70b8 -> 0xaa7158
+Object 0xaa72b8 vt 0xaa7158 -> (nil)
+Symbol 0xaa72d8 vt 0xaa71f8 -> 0xaa7158
+Direct invocation of new: and print
+alloc 0xaa71f8 size   8 = mem 0xaa7070 oop 0xaa7078
+Machine Foo is ready
+Testing keyword new: operator
+alloc 0xaa71f8 size   8 = mem 0xaa73e0 oop 0xaa73e8
+symbol oop    0xaa73e8
+symbol vt     0xaa71f8
+symbol string 0xaa7400
+Testing unary print operator
+Machine Foo is ready
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -o ovmhello ovmhello.c[C[1@ [1@-[1@g[1P[1@ 
+In file included from /usr/include/string.h:32:0,
+                 from ovm.c:3,
+                 from ovmhello.c:1:
+ovmhello.c: In function ‘Array_sizeInMemory’:
+ovmhello.c:94:29: error: called object ‘self’ is not a function or function pointer
+  size_t len = sizeof(*(self)NULL)+((self->length)*sizeof(*self->contents));
+                             ^
+ovmhello.c:92:70: note: declared here
+ static struct object *Array_sizeInMemory(struct closure *cls, HArray self)
+                                                                      ^
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ gcc -g -o ovmhello ovmhello.c
+]0;ubuntu@ubuntu: ~/Desktop/MOSubuntu@ubuntu:~/Desktop/MOS$ ./ovmhello 
+vt Proto_vt 0x1f530b8 parent 0x1f53158 (Object_vt) size 4 tally 4
+    0 key 0x1f53338 (#lookup) value 0x1f53608
+    1 key 0x1f53378 (#add_method) value 0x1f53628
+    2 key 0x1f533c8
