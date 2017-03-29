@@ -1,0 +1,45 @@
+Approach:
+
+The concepts of message passing and objects were new to me, so the first thing I did was to read about these concepts from the resources available. Once I got the basics cleared I went through the codes several times and also typed it myself. After this I started thinking about the questions in the assignment.
+
+The second question seemed easy so I started with it and as per my expectation I was able to write the code for it without much difficulty. For implementing append I added a method string_append() in the Vtable of the String Class and used strcpy and strcat to concatenate the two strings objects, and passed s_newp message to the string class to create a new instance of string with the appended string. 
+
+The first question bugged me a lot and took the maximum amount of time to solve. I realized that since sizeInMemory should report the size of  all the objects therefore it should be in the Object vtable as Object is the parent of all the objects created. Now since every function returns a pointer that is typecasted to struct object it was very difficult to recognize what was the structure of the receiver before typecast. One method which struck me was that I can use the vt of the object to determine its type and then use a series of if else statements to calculate the size of that object accordingly. But I was not convinced by this approach because if we keep adding other type of objects to our code the length of the method sizeInMemory will keep on increasing linenarly. Moreover there is a flaw in this implementation, if we pass sizeInMemory to the String Object or Symbol Object it should report its size as zero, as these are defined as struct object *, but the sizeInMemory method implemented using the above technique will look at the vt of the receiver and it will try to calculate its size. The vt of the string object will have its name field as "String" and it will try to access the members of the struct mystring after typecasting but since String is of type struct object it will result in some garbage value. The second method that I had in my mind was to add sizeInMemory to all the object's vtable. But it had the same problems as the first method, moreover implementation also required adding the same method to each object which did not seem feasible because if we are adding same method to all the objects we can just put it in the vt of the Object. The third method that I had in my mind was to add a size field to all the objects and assign it during allocation. If I keep the initial structure of all the objects same I can access the size field even after a typecast. The struct object is changed to:
+struct object  {
+	_VTABLE_REF;
+	int obj_size;
+};
+In the method vt_allocate we are getting the size of the structure of the object in the bytes parameter. All we need to do is to store it in the obj_size field. obj_size is added in all the structures that are used for creating objects like struct mystring, struct symbol, etc. For example struct mystring is changed to:
+struct mystring { _VTABLE_REF;int obj_size; int length; char *chars; };
+The method vt_allocate accounts for the size of the structure but to add the size of the instance variables I am updating the obj_size in the s_newp method of those objects.
+Finally in sizeInMemory method I am retriving the obj_size field and adding the size of the struct object if obj_size is zero.
+With this method we are able to get the size in memory of all the objects that are being created in ovm.c or ovmhello.c
+
+Analysis of Results:
+
+1) The following test cases were used to test the sizeInMemory method
+
+Test Case		       Result					Analysis
+send(Symbol, s_sizeInMemory) - Size in memory of Symbol is 8		Symbol is of type struct object * if we do sizeof(struct object) we 										get 8. sizeof(struct object)= 8
+send(Object, s_sizeInMemory) - Size in memory of Object is 8		Object is of type struct object * if we do sizeof(struct object) we 										get 8. sizeof(struct object)= 8
+send(Proto, s_sizeInMemory) -  Size in memory of Proto is 8		Proto is of type struct object * if we do sizeof(struct object) we 										get 8. sizeof(struct object)= 8
+send(String, s_sizeInMemory) - Size in memory of String is 8		String is of type struct object * if we do sizeof(struct object) we 										get 8. sizeof(struct object)= 8
+send(Array, s_sizeInMemory) -  Size in memory of Array is 8		Array is of type struct object * if we do sizeof(struct object) we 										get 8. sizeof(struct object)= 8
+send(h, s_sizeInMemory)     -  Size in memory of h is 21		h is of type struct mystring * if we do sizeof(struct mystring) we 										get 16. sizeof(struct mystring)= 16. h has a length of 5 so it adds 5 										to 16 as each charater takes only 1 byte.
+send(sp, s_sizeInMemory)    -  Size in memory of String sp is 17	sp is of type struct mystring * if we do sizeof(struct mystring) we 										get 16. sizeof(struct mystring)= 16. sp has a length of 1 so it adds 1 										to 16 as each charater takes only 1 byte.
+send(s_at, s_sizeInMemory)  -  Size in memory of Symbol s_at is 20	s_at is of type struct symbol * if we do sizeof(struct symbol) we 										get 16. sizeof(struct symbol)= 16. s_at has string of a length of 3 so 										in sym_alloc adds 4 to 16 as each charater takes only 1 byte.
+send(line, s_sizeInMemory)  -  Size in memory of Array line is 48	line is of type struct array * if we do sizeof(struct array) we 									get 16. sizeof(struct array)= 16. line has a length of 4 										and everything in content is a pointer so it takes a size of 16	 										+(4*8)=48
+
+2) I am getting the following results for append
+
+   (h length + w length) = (h append: w) length. "true".
+	The above statement is true as the length of h is 5, length of w is 5 and the length of the appended string is 10.
+
+   (h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory. "false".
+	The above statement is false as sizeInMemory of h will be the size of struct mystring+ the length of hello, in the same way size of w 		will be the size of struct mystring+ the length of world, but the size of the appended string will be the size of struct mystring+ the 		length of the new string. Therefore on the left side the size of struct is getting added twice whereas on the right side it is getting 		added only once.
+	We can rewrite the above statement to make it true:
+	h := String new: "hello".
+	w := String new: "world".
+	ns := String new: "".
+	(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory + ns sizeInMemory. "True".
+

@@ -182,6 +182,25 @@ int main(int argc, char *argv[])
 	printf("(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory + \"\" sizeInMemory. True\n");
 	else
 	printf("(h sizeInMemory + w sizeInMemory) = (h append: w) sizeInMemory + \"\" sizeInMemory. False\n");
-
+	
+	size1=oop2i(send(Symbol, s_sizeInMemory));
+	printf("Size in memory of Symbol is %d\n",size1);
+	size1=oop2i(send(Object, s_sizeInMemory));
+	printf("Size in memory of Object is %d\n",size1);
+	size1=oop2i(send(Proto, s_sizeInMemory));
+	printf("Size in memory of Proto is %d\n",size1);
+	size1=oop2i(send(String, s_sizeInMemory));
+	printf("Size in memory of String is %d\n",size1);
+	size1=oop2i(send(Array, s_sizeInMemory));
+	printf("Size in memory of Array is %d\n",size1);
+	size1=oop2i(send(h, s_sizeInMemory));
+	printf("Size in memory of h is %d\n",size1);
+	size1=oop2i(send(sp, s_sizeInMemory));
+	printf("Size in memory of String sp is %d\n",size1);
+	size1=oop2i(send(s_at, s_sizeInMemory));
+	printf("Size in memory of Symbol s_at is %d\n",size1);
+	size1=oop2i(send(line, s_sizeInMemory));
+	printf("Size in memory of Array line is %d\n",size1);
+	printf("sizeof(struct symbol)= %lu\n",sizeof(struct symbol));
 	return 0;
 }
