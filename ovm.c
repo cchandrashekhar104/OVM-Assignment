@@ -42,15 +42,14 @@ vtable is just oop->_vt[-1]
 
 #define vtof(p)		((p)->_vt[-1])
 #define oop_setvt(p, t)	((p)->_vt[-1] = (struct vtable *)(t))
-
+#define sof(p)		((int)((char *)((p)->_vt[-2]) - (char *)0))
+#define oop_setsof(p, n)  ((p)->_vt[-2] = (struct vtable *)((char *)0 + (n)))
 struct object  {
 	_VTABLE_REF;
-	int obj_size;
 };
 
 struct vtable {
 	_VTABLE_REF;
-	int obj_size;
 	char		*name;
 	int             size;		// these members are accessed only by VM
 	int             tally;
@@ -61,13 +60,11 @@ struct vtable {
 
 struct symbol {
 	_VTABLE_REF;
-	int obj_size;
 	char     *string;
 };
 
 struct closure {
 	_VTABLE_REF;
-	int obj_size;
 	method_t method;
 	struct object *env;	// symbol bindings
 };
@@ -178,10 +175,10 @@ struct object *vt_allocate(struct closure *cls, struct vtable *self, size_t byte
 	struct object *oop;
 
 	assert(bytes < 4096);	// sanity check
-	vtp = (struct vtable **)calloc(1, sizeof(struct vtable *) + bytes);
-	oop = (struct object *)(vtp+1);
+	vtp = (struct vtable **)calloc(1, 2*sizeof(struct vtable *) + bytes);
+	oop = (struct object *)(vtp+2);
 	oop_setvt(oop, self);
-	oop->obj_size=bytes;
+	oop_setsof(oop, bytes);
 	return oop;
 }
 
@@ -195,6 +192,8 @@ static struct vtable *vt_delegate(struct closure *cls, struct vtable *parent, ch
 	vt->keys    = (typeof(vt->keys))calloc(vt->size, sizeof(vt->keys[0]));
 	vt->values  = (typeof(vt->values))calloc(vt->size, sizeof(vt->values[0]));
 	vt->parent  = parent;
+	int a=sof((struct object *)vt)+(2*(vt->size)*sizeof(vt->keys[0]));
+	oop_setsof((struct object *)vt, a);
 	// child and parent share the same vt
 	assert(vtof(vt) == (parent ? vtof(parent) : 0));
 	return vt;
@@ -266,6 +265,8 @@ static struct object *vt_add_method(struct closure *cls, struct vtable *vt,
 		vt->size  *= 2;
 		vt->keys   = (typeof(vt->keys))realloc(vt->keys,    vt->size*sizeof(vt->keys[0]));
 		vt->values = (typeof(vt->values))realloc(vt->values,vt->size*sizeof(vt->values[0]));
+		int a=sof((struct object *)vt)+((vt->size)*sizeof(vt->keys[0]));
+		oop_setsof((struct object *)vt, a);
 	}
 	vt->keys  [vt->tally  ] = key;
 	vt->values[vt->tally++] = cls_alloc(method, 0);
@@ -323,9 +324,7 @@ static struct object *symbol_length(struct closure *cls, struct object *self)
 // Object>>#sizeInMemory
 static struct object *object_sizeInMemory(struct closure *cls, struct object *self)
 {
-	int len=self->obj_size;
-	if(len==0)
-		len=self->obj_size+sizeof(struct object);
+	int len=sof(self);
 	return i2oop(len);
 }
 

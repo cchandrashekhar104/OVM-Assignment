@@ -4,7 +4,13 @@ The concepts of message passing and objects were new to me, so the first thing I
 
 The second question seemed easy so I started with it and as per my expectation I was able to write the code for it without much difficulty. For implementing append I added a method string_append() in the Vtable of the String Class and used strcpy and strcat to concatenate the two strings objects, and passed s_newp message to the string class to create a new instance of string with the appended string. 
 
-The first question bugged me a lot and took the maximum amount of time to solve. I realized that since sizeInMemory should report the size of  all the objects therefore it should be in the Object vtable as Object is the parent of all the objects created. Now since every function returns a pointer that is typecasted to struct object it was very difficult to recognize what was the structure of the receiver before typecast. One method which struck me was that I can use the vt of the object to determine its type and then use a series of if else statements to calculate the size of that object accordingly. But I was not convinced by this approach because if we keep adding other type of objects to our code the length of the method sizeInMemory will keep on increasing linenarly. Moreover there is a flaw in this implementation, if we pass sizeInMemory to the String Object or Symbol Object it should report its size as zero, as these are defined as struct object *, but the sizeInMemory method implemented using the above technique will look at the vt of the receiver and it will try to calculate its size. The vt of the string object will have its name field as "String" and it will try to access the members of the struct mystring after typecasting but since String is of type struct object it will result in some garbage value. The second method that I had in my mind was to add sizeInMemory to all the object's vtable. But it had the same problems as the first method, moreover implementation also required adding the same method to each object which did not seem feasible because if we are adding same method to all the objects we can just put it in the vt of the Object. The third method that I had in my mind was to add a size field to all the objects and assign it during allocation. If I keep the initial structure of all the objects same I can access the size field even after a typecast. The struct object is changed to:
+The first question bugged me a lot and took the maximum amount of time to solve. I realized that since sizeInMemory should report the size of  all the objects therefore it should be in the Object vtable as Object is the parent of all the objects created. Now since every function returns a pointer that is typecasted to struct object it was very difficult to recognize what was the structure of the receiver before typecast. 
+
+One method which struck me was that I can use the vt of the object to determine its type and then use a series of if else statements to calculate the size of that object accordingly. But I was not convinced by this approach because if we keep adding other type of objects to our code the length of the method sizeInMemory will keep on increasing linenarly. Moreover there is a flaw in this implementation, if we pass sizeInMemory to the String Object or Symbol Object it should report its size as zero, as these are defined as struct object *, but the sizeInMemory method implemented using the above technique will look at the vt of the receiver and it will try to calculate its size. The vt of the string object will have its name field as "String" and it will try to access the members of the struct mystring after typecasting but since String is of type struct object it will result in some garbage value. 
+
+The second method that I had in my mind was to add sizeInMemory to all the object's vtable. But it had the same problems as the first method, moreover implementation also required adding the same method to each object which did not seem feasible because if we are adding same method to all the objects we can just put it in the vt of the Object.
+
+The third method that I had in my mind was to add a size field to all the objects and assign it during allocation. If I keep the initial structure of all the objects same I can access the size field even after a typecast. The struct object is changed to:
 struct object  {
 	_VTABLE_REF;
 	int obj_size;
@@ -15,21 +21,34 @@ The method vt_allocate accounts for the size of the structure but to add the siz
 Finally in sizeInMemory method I am retriving the obj_size field and adding the size of the struct object if obj_size is zero.
 With this method we are able to get the size in memory of all the objects that are being created in ovm.c or ovmhello.c
 
+Method Implemented:
+
+	The implemented method is similar to the third method instead of adding a size variable to all the objects I am saving the size in the location _vt[-2]. Now whenever we need to set or get the size of any object we can just use the following macros.
+
+#define sof(p)		((int)((char *)((p)->_vt[-2]) - (char *)0))
+#define oop_setsof(p, n)  ((p)->_vt[-2] = (struct vtable *)((char *)0 + (n)))
+
+So in vt_allocate I am setting the size of the object using the above macro to bytes. This stores the size of the structure of the object in _vt[-2]. Now in the newp method of diffrent type of objects I am updating _vt[-2] accordingly. For example for a string instance we need to add the length of the string to the basic structure size. For Vtables I am considering the length of the keys[] and values[] arrays, and when we are reallocating the arrays I am updating the _vt[-2] accordingly.
+This method provides us with a general method to calculate size in memory of any object created in ovm.c and ovmhello.c
+
 Analysis of Results:
 
 1) The following test cases were used to test the sizeInMemory method
 
 Test Case		       Result					Analysis
-send(Symbol, s_sizeInMemory) - Size in memory of Symbol is 8		Symbol is of type struct object * if we do sizeof(struct object) we 										get 8. sizeof(struct object)= 8
-send(Object, s_sizeInMemory) - Size in memory of Object is 8		Object is of type struct object * if we do sizeof(struct object) we 										get 8. sizeof(struct object)= 8
-send(Proto, s_sizeInMemory) -  Size in memory of Proto is 8		Proto is of type struct object * if we do sizeof(struct object) we 										get 8. sizeof(struct object)= 8
-send(String, s_sizeInMemory) - Size in memory of String is 8		String is of type struct object * if we do sizeof(struct object) we 										get 8. sizeof(struct object)= 8
-send(Array, s_sizeInMemory) -  Size in memory of Array is 8		Array is of type struct object * if we do sizeof(struct object) we 										get 8. sizeof(struct object)= 8
+
+send(Symbol, s_sizeInMemory) - Size in memory of Symbol is 0		Symbol is of type struct object * if we do sizeof(struct object) we 										get 0. sizeof(struct object)= 0
+send(Object, s_sizeInMemory) - Size in memory of Object is 0		Object is of type struct object * if we do sizeof(struct object) we 										get 0. sizeof(struct object)= 0
+send(Proto, s_sizeInMemory) -  Size in memory of Proto is 0		Proto is of type struct object * if we do sizeof(struct object) we 										get 0. sizeof(struct object)= 0
+send(String, s_sizeInMemory) - Size in memory of String is 0		String is of type struct object * if we do sizeof(struct object) we 										get 0. sizeof(struct object)= 0
+send(Array, s_sizeInMemory) -  Size in memory of Array is 0		Array is of type struct object * if we do sizeof(struct object) we 										get 0. sizeof(struct object)= 0
 send(h, s_sizeInMemory)     -  Size in memory of h is 21		h is of type struct mystring * if we do sizeof(struct mystring) we 										get 16. sizeof(struct mystring)= 16. h has a length of 5 so it adds 5 										to 16 as each charater takes only 1 byte.
 send(sp, s_sizeInMemory)    -  Size in memory of String sp is 17	sp is of type struct mystring * if we do sizeof(struct mystring) we 										get 16. sizeof(struct mystring)= 16. sp has a length of 1 so it adds 1 										to 16 as each charater takes only 1 byte.
-send(s_at, s_sizeInMemory)  -  Size in memory of Symbol s_at is 20	s_at is of type struct symbol * if we do sizeof(struct symbol) we 										get 16. sizeof(struct symbol)= 16. s_at has string of a length of 3 so 										in sym_alloc adds 4 to 16 as each charater takes only 1 byte.
+send(s_at, s_sizeInMemory)  -  Size in memory of Symbol s_at is 12	s_at is of type struct symbol * if we do sizeof(struct symbol) we 										get 8. sizeof(struct symbol)= 8. s_at has string of a length of 3 so 										in sym_alloc adds 4 to 8 as each charater takes only 1 byte.
 send(line, s_sizeInMemory)  -  Size in memory of Array line is 48	line is of type struct array * if we do sizeof(struct array) we 									get 16. sizeof(struct array)= 16. line has a length of 4 										and everything in content is a pointer so it takes a size of 16	 										+(4*8)=48
-
+send(Object_vt, s_sizeInMemory) - Size in memory of Object_vt is 72	The basic size of any Vtable is 40. Initallly all Vtables have a size 										2, so keys[] and values[] will have space for two pointers each 									therefore total number of pointers = 4 size=40+(8*4)=72 
+send(String_vt, s_sizeInMemory) - Size in memory of String_vt is 104	The basic size of any Vtable is 40. Initallly all Vtables have a size 										2, so keys[] and values[] will have space for two pointers each. When 										we add new methods the size gets doubled if no space is available 										therefore for string total methods =4. No of Pointers = 4*2=8.
+									Total Size= 40+(8*8)=104. 
 2) I am getting the following results for append
 
    (h length + w length) = (h append: w) length. "true".

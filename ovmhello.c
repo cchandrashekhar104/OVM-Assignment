@@ -1,7 +1,7 @@
 #include "ovm.c"
 #include "string.h"
 // Begin String definitions
-struct mystring { _VTABLE_REF;int obj_size; int length; char *chars; }; 
+struct mystring { _VTABLE_REF; int length; char *chars; }; 
 typedef struct mystring *HString;
 
 static struct vtable *String_vt;
@@ -14,7 +14,8 @@ static struct object *String_newp(struct closure *cls, struct object *self, char
 	
 	clone->length = strlen(chars);
 	clone->chars  = strdup(chars);
-	((struct object *)clone)->obj_size= ((struct object *)clone)->obj_size+clone->length;
+	int size=sof(clone)+clone->length;
+	oop_setsof(clone, size);
 	return (struct object *)clone;
 }
 
@@ -45,7 +46,7 @@ static struct object *String_append(struct closure * cls, struct object * self, 
 static struct symbol *s_append;
 
 // ------------------------ Begin Array definitions
-struct array { _VTABLE_REF;int obj_size; int length; struct object **contents; };
+struct array { _VTABLE_REF; int length; struct object **contents; };
 typedef struct array *HArray;
 
 static struct vtable *Array_vt;
@@ -59,7 +60,8 @@ static struct object *Array_newp(struct closure *cls, struct object *self, int l
 	clone->length   = length;
 	clone->contents = (struct object **)calloc(clone->length, sizeof(struct object *));
 	assert(clone->contents);
-	((struct object *)clone)->obj_size= ((struct object *)clone)->obj_size+((clone->length)*sizeof(*(clone->contents)));
+	int size=sof(clone)+(clone->length)*sizeof(*(clone->contents));
+	oop_setsof(clone, size);
 	return (struct object *)clone;
 }
 
@@ -197,10 +199,15 @@ int main(int argc, char *argv[])
 	printf("Size in memory of h is %d\n",size1);
 	size1=oop2i(send(sp, s_sizeInMemory));
 	printf("Size in memory of String sp is %d\n",size1);
-	size1=oop2i(send(s_at, s_sizeInMemory));
-	printf("Size in memory of Symbol s_at is %d\n",size1);
+	size1=oop2i(send(s_sizeInMemory, s_sizeInMemory));
+	printf("Size in memory of Symbol s_sizeInMemory is %d\n",size1);
 	size1=oop2i(send(line, s_sizeInMemory));
 	printf("Size in memory of Array line is %d\n",size1);
-	printf("sizeof(struct symbol)= %lu\n",sizeof(struct symbol));
+	size1=oop2i(send(Object_vt, s_sizeInMemory));
+	printf("Size in memory of Object_vt is %d\n",size1);
+	size1=oop2i(send(String_vt, s_sizeInMemory));
+	printf("Size in memory of String_vt is %d\n",size1);
+	printf("sizeof(struct vtable)= %lu\n",sizeof(struct vtable));
+	printf("sizeof(String_vt->keys[0])= %lu\n",sizeof(String_vt->keys[0]));
 	return 0;
 }
